@@ -34,7 +34,7 @@ def display_filter_responses(opts, response_maps):
     plt.subplots_adjust(
         left=0.05, right=0.95, top=0.95, bottom=0.05, wspace=0.05, hspace=0.05
     )
-    plt.show()
+    plt.savefig("aquarium_plot_2")
 
 
 def visualize_wordmap(wordmap, out_path=None):
