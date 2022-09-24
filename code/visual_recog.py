@@ -203,7 +203,6 @@ def evaluate_recognition_system(opts, n_worker=1):
         pred_label = train_labels[sim_index]
         pred_labels[idx] = pred_label
     shutil.rmtree("tmp")
-    breakpoint()
     acc = (pred_labels == test_labels).sum()/len(pred_labels) 
     conf = sklearn.metrics.confusion_matrix(test_labels, pred_labels) 
     return conf, acc
