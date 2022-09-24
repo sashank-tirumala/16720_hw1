@@ -36,6 +36,7 @@ def get_opts():
     parser.add_argument('--L', type=int, default=1,
                         help='# of layers in spatial pyramid matching (SPM)')
 
+    parser.add_argument('--exp-name', type=str, default='dbg', help='name of experiment you are running')
     # Additional options (add your own hyperparameters here)
 
     ##

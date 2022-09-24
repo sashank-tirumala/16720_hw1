@@ -9,6 +9,7 @@ from sklearn.cluster import KMeans
 from opts import get_opts
 import util
 from pathlib import Path
+import shutil
 
 
 def extract_filter_responses(opts, img):
@@ -98,6 +99,7 @@ def compute_dictionary(opts, n_worker=1):
     for i in range(len(train_files)):
         tmp={'opts':opts, "img_path":opts.data_dir+"/"+train_files[i], "id":i}
         inps.append(tmp)
+    os.mkdir("tmp")
     pool = multiprocessing.Pool(processes=64)
     pool.map(compute_dictionary_one_image, inps)
     arrs = []
@@ -109,6 +111,7 @@ def compute_dictionary(opts, n_worker=1):
     kmeans = KMeans(n_clusters=K).fit(arrs)
     dictionary = kmeans.cluster_centers_
     np.save(join(out_dir, 'dictionary.npy'), dictionary)
+    shutil.rmtree("tmp")
 
 
 def get_visual_words(opts, img, dictionary):
